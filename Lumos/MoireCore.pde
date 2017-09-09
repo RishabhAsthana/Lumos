@@ -1,9 +1,16 @@
+/*
+  Author: Rishabh Asthana {asthana4@illinois.edu}
+  File: MoireCore.pde
+  Function: Generates a bunch of rotated lines centered at a single point, and takes a collection of these 'points' and animate them 
+*/
+
  Core core;
+ // Number of lines: Values chosen by trial and error for what looks good
  int[] n = {64, 48, 28, 20};
  float a = 0;
 
 class Core {
-  
+
   ArrayList<Grating> source;
   int locX, locY;
   int N, nLines;
@@ -40,7 +47,9 @@ class Core {
    }
  }
  
-  class Grating
+ // This class creates one of those 'points'.
+ // Named Grating because it resembles Newton's Inteference experiment
+ class Grating
  {
   
   float centerX, centerY;
@@ -48,30 +57,29 @@ class Core {
   
   Grating(float centerX_, float centerY_, int r1_, int r2_)
   {
-   centerX = centerX_;
-   centerY = centerY_;
-   r1 = r1_;
-   r2 = r2_; 
+     centerX = centerX_;
+     centerY = centerY_;
+     r1 = r1_;
+     r2 = r2_; 
   }
   
   void display(float a1, int n)
   {
     
-    pushMatrix();
-    translate(centerX ,centerY);
-    rotate(a1);
-
-    for(float angle = 0; angle < TWO_PI; angle += PI/n)
-    {
-     float x1 =  r1 * cos(angle);
-     float y1 =  r1 * sin(angle);
-     float x2 =  r2 * cos(angle);
-     float y2 =  r2 * sin(angle);
- 
-     line(x1, y1, x2, y2);
-    }
-    
-    popMatrix();
+      pushMatrix();
+      translate(centerX ,centerY);
+      rotate(a1);
+  
+      for(float angle = 0; angle < TWO_PI; angle += PI/n)
+      {
+         float x1 =  r1 * cos(angle);
+         float y1 =  r1 * sin(angle);
+         float x2 =  r2 * cos(angle);
+         float y2 =  r2 * sin(angle);
+         line(x1, y1, x2, y2);
+      }
+      
+      popMatrix();
   }
    
  }
